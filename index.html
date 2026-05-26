@@ -3,75 +3,404 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Una pregunta para ti ❤️</title>
+<title>Expediente X-28-D</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-    text-align:center;
-    height:100vh;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color:#e5e7eb;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    margin:0;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:800px;
 }
 
 .card{
-    background:white;
-    padding:40px;
+    background:rgba(15,23,42,.95);
+    border:1px solid rgba(255,255,255,.1);
     border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    padding:40px;
+    box-shadow:0 10px 40px rgba(0,0,0,.4);
+    animation:fadeIn .5s ease;
+}
+
+h1{
+    margin-bottom:10px;
+    color:#f8fafc;
+}
+
+h2{
+    margin-bottom:20px;
+    color:#cbd5e1;
+}
+
+p{
+    margin:15px 0;
+    line-height:1.7;
+}
+
+.small{
+    color:#94a3b8;
+    font-size:.95rem;
 }
 
 button{
-    padding:12px 25px;
-    margin:10px;
+    margin-top:25px;
+    padding:12px 24px;
     border:none;
     border-radius:10px;
+    background:#334155;
+    color:white;
     cursor:pointer;
-    font-size:18px;
+    font-size:16px;
+    transition:.2s;
 }
 
-#si{
-    background:#4CAF50;
-    color:white;
+button:hover{
+    background:#475569;
+    transform:translateY(-2px);
 }
 
-#no{
-    background:#f44336;
+.screen{
+    display:none;
+}
+
+.screen.active{
+    display:block;
+}
+
+.radio-group{
+    margin-top:20px;
+}
+
+.option{
+    display:block;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:rgba(255,255,255,.05);
+}
+
+textarea{
+    width:100%;
+    min-height:140px;
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.15);
+    background:#0f172a;
     color:white;
-    position:relative;
+    resize:vertical;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:999px;
+    background:#1e293b;
+    color:#cbd5e1;
+    font-size:.85rem;
+    margin-bottom:20px;
+}
+
+.success{
+    font-size:1.2rem;
+    color:#22c55e;
+    margin-bottom:15px;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-    <h1>❤️ Tengo una pregunta ❤️</h1>
-    <h2>¿Te gustaría salir conmigo?</h2>
+<div class="container">
 
-    <button id="si" onclick="acepto()">Sí</button>
-    <button id="no" onmouseover="moverNo()">No</button>
+    <!-- Pantalla 1 -->
+    <div class="screen active" id="screen1">
+        <div class="card">
+            <div class="badge">CONFIDENCIAL</div>
 
-    <p id="mensaje"></p>
+            <h1>Expediente X-28-D</h1>
+            <h2>Caso: Interés Inexplicable</h2>
+
+            <p>
+                Después de meses de observación, se ha detectado una anomalía estadísticamente improbable.
+            </p>
+
+            <p>
+                Una persona continúa escribiéndome para preguntar cómo estoy
+                o simplemente contarme algo que ocurrió durante su día.
+            </p>
+
+            <p>
+                Incluso después de haberme conocido.
+            </p>
+
+            <button onclick="next(2)">
+                Revisar expediente
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla 2 -->
+    <div class="screen" id="screen2">
+        <div class="card">
+            <h1>Evidencia #1</h1>
+
+            <p><strong>Fecha del hallazgo:</strong></p>
+            <p>Hace un par de meses aproximadamente.</p>
+
+            <p><strong>Evento registrado:</strong></p>
+            <p>Contacto iniciado por Facebook.</p>
+
+            <button onclick="next(3)">
+                Ver siguiente evidencia
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla 3 -->
+    <div class="screen" id="screen3">
+        <div class="card">
+            <h1>Evidencia #2</h1>
+
+            <p>
+                Se registraron múltiples conversaciones iniciadas de forma voluntaria.
+            </p>
+
+            <p>
+                Lo más extraño es que la otra parte parece disfrutarlas.
+            </p>
+
+            <button onclick="next(4)">
+                Se pone raro
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla 4 -->
+    <div class="screen" id="screen4">
+        <div class="card">
+            <h1>Evidencia #3</h1>
+
+            <p>
+                Se perpetuaron múltiples encuentros presenciales.
+            </p>
+
+            <p>
+                Ninguno terminó con una orden de alejamiento,
+                una huida estratégica o una desaparición misteriosa.
+            </p>
+
+            <button onclick="next(5)">
+                Continuar investigación
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla 5 -->
+    <div class="screen" id="screen5">
+        <div class="card">
+            <h1>Conclusión preliminar</h1>
+
+            <p>
+                Los datos recopilados indican que existe algún motivo
+                por el cual esta persona mantiene interés en interactuar conmigo.
+            </p>
+
+            <p>
+                Sin embargo, la naturaleza exacta de dicho interés
+                sigue siendo desconocida.
+            </p>
+
+            <p>
+                Después de revisar las evidencias,
+                la hipótesis de "simple error del sistema"
+                ha quedado descartada.
+            </p>
+
+            <p>
+                Por lo tanto, se autoriza el inicio
+                de una investigación formal.
+            </p>
+
+            <button onclick="next(6)">
+                Iniciar interrogatorio amistoso
+            </button>
+        </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="screen" id="screen6">
+        <div class="card">
+
+            <h1>Formulario de investigación</h1>
+
+            <p>
+                <strong>Según tu criterio profesional...</strong>
+            </p>
+
+            <p>
+                ¿Cuál consideras que es la razón principal de tu interés?
+            </p>
+
+            <div class="radio-group">
+
+                <label class="option">
+                    <input type="radio" name="respuesta" value="Solo me caes bien">
+                    Solo me caes bien.
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="respuesta" value="Me gustan tus chistes flojos">
+                    Me gustan tus chistes flojos.
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="respuesta" value="Me pareces una persona interesante">
+                    Me pareces una persona interesante.
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="respuesta" value="Todavía estoy intentando averiguar qué tienes de especial">
+                    Todavía estoy intentando averiguar qué tienes de especial.
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="respuesta" value="Otra razón">
+                    Otra razón.
+                </label>
+
+            </div>
+
+            <p style="margin-top:25px;">
+                <strong>Justifique su respuesta</strong>
+            </p>
+
+            <p class="small">
+                Se aceptan respuestas honestas,
+                exageraciones razonables y teorías conspirativas.
+            </p>
+
+            <p class="small">
+                No existe una respuesta correcta.
+                Esta investigación busca comprender el fenómeno,
+                no influir en sus resultados.
+            </p>
+
+            <textarea
+                id="justificacion"
+                placeholder="Escriba aquí su versión de los hechos..."
+            ></textarea>
+
+            <button onclick="enviarRespuesta()">
+                Enviar respuesta
+            </button>
+
+        </div>
+    </div>
+
+    <!-- Final -->
+    <div class="screen" id="screen7">
+        <div class="card">
+
+            <div class="success">
+                ✅ Respuesta recibida correctamente
+            </div>
+
+            <p>
+                Gracias por colaborar con esta investigación.
+            </p>
+
+            <p>
+                Los resultados serán analizados exclusivamente por Miguel.
+            </p>
+
+            <p>
+                La información suministrada podría ser utilizada
+                para resolver una duda existencial pendiente.
+            </p>
+
+        </div>
+    </div>
+
 </div>
 
 <script>
-function acepto(){
-    document.getElementById("mensaje").innerHTML =
-    "🥰 ¡Genial! Ahora ya tenemos una cita.";
+
+function next(screenNumber){
+    document.querySelectorAll(".screen").forEach(screen=>{
+        screen.classList.remove("active");
+    });
+
+    document
+        .getElementById("screen" + screenNumber)
+        .classList.add("active");
 }
 
-function moverNo(){
-    const btn = document.getElementById("no");
+function enviarRespuesta(){
 
-    const x = Math.random() * 300 - 150;
-    const y = Math.random() * 150 - 75;
+    const opcion = document.querySelector(
+        'input[name="respuesta"]:checked'
+    );
 
-    btn.style.transform = `translate(${x}px, ${y}px)`;
+    if(!opcion){
+        alert("La investigación requiere seleccionar una opción.");
+        return;
+    }
+
+    const texto = document
+        .getElementById("justificacion")
+        .value
+        .trim();
+
+    const mensaje =
+`🔒 Resultado de la investigación X-28-D
+
+Opción seleccionada:
+${opcion.value}
+
+Justificación:
+${texto || "Sin comentarios adicionales."}
+
+Fin del informe.`;
+
+    const url = `https://wa.me/573195495691?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
+
+    next(7);
 }
+
 </script>
 
 </body>
